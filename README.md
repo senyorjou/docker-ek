@@ -149,8 +149,14 @@ elasticsearch:
 This will store Elasticsearch data inside `/path/to/storage`.
 
 **IMPORTANT NOTE:** beware of these OS-specific considerations:
-* **Linux:** the [unprivileged `elasticsearch` user][esuser] is used within the Elasticsearch image, therefore the
-  mounted data directory must be owned by the uid `1000`.
+* **Linux:** the [unprivileged `elasticsearch` user][esuser] is used within the Elasticsearch image, therefore the mounted data directory must be owned by the uid `1000`.
+  
+If data directory to use is `./data`:
+ 
+```bash
+$ sudo mkdir data && chown -R data 1000:1000 
+``` 
+  
 * **macOS:** the default Docker for Mac configuration allows mounting files from `/Users/`, `/Volumes/`, `/private/`,
   and `/tmp` exclusively. Follow the instructions from the [documentation][macmounts] to add more locations.
 
